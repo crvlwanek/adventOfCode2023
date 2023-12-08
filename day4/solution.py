@@ -53,15 +53,14 @@ def part2(lines: list[str]) -> int:
     lineScores = {}
     for currentLine in reversed(range(1, len(lines) + 1)):
         cards = scoreLine(currentLine)
-        print(cards)
-        lineScores[currentLine] = sum(lineScores[card] for card in cards) if cards else 1
-        cardCount += lineScores[currentLine]
+        score = (sum(lineScores[card] for card in cards) if cards else 0) + 1
+        lineScores[currentLine] = score
+        cardCount += score
 
-    print(lineScores)
     return cardCount
 
 def main():
-    with open("sample.txt") as file:
+    with open("input.txt") as file:
         lines = [line.rstrip() for line in file.readlines()]
     
     res = part2(lines)
